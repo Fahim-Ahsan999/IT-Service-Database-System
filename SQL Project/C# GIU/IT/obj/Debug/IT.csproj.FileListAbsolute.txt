@@ -1,0 +1,16 @@
+C:\Users\USER\source\repos\IT\IT\bin\Debug\IT.exe.config
+C:\Users\USER\source\repos\IT\IT\bin\Debug\IT.exe
+C:\Users\USER\source\repos\IT\IT\bin\Debug\IT.pdb
+C:\Users\USER\source\repos\IT\IT\obj\Debug\IT.csproj.AssemblyReference.cache
+C:\Users\USER\source\repos\IT\IT\obj\Debug\IT.Log_in.resources
+C:\Users\USER\source\repos\IT\IT\obj\Debug\IT.Properties.Resources.resources
+C:\Users\USER\source\repos\IT\IT\obj\Debug\IT.csproj.GenerateResource.cache
+C:\Users\USER\source\repos\IT\IT\obj\Debug\IT.csproj.CoreCompileInputs.cache
+C:\Users\USER\source\repos\IT\IT\obj\Debug\IT.exe
+C:\Users\USER\source\repos\IT\IT\obj\Debug\IT.pdb
+C:\Users\USER\source\repos\IT\IT\obj\Debug\IT.Home.resources
+C:\Users\USER\source\repos\IT\IT\obj\Debug\IT.Intro.resources
+C:\Users\USER\source\repos\IT\IT\obj\Debug\IT.Info.resources
+C:\Users\USER\source\repos\IT\IT\obj\Debug\IT.Payment.resources
+C:\Users\USER\source\repos\IT\IT\obj\Debug\IT.status.resources
+C:\Users\USER\source\repos\IT\IT\obj\Debug\IT.token.resources

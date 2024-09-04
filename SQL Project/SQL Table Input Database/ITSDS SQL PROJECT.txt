@@ -1,0 +1,705 @@
+----------------------------------Branch head-----------------------------------
+
+create table b_head_c( 
+   h_id number not null,
+   h_name varchar2(30) not null,  
+   h_branch varchar2(20) not null,
+   h_email varchar2(20) not null,
+   
+   constraint hido primary key(h_id)
+   
+   );
+   
+insert into b_head_c values (bhc_id_S1.NEXTVAL,'md ashraf','dhaka','ashraf2@hotmail.com');
+insert into b_head_c values (bhc_id_S1.NEXTVAL,'md rafiq hasan','rajshahi','rafi389@hotmail.com');
+insert into b_head_c values (bhc_id_S1.NEXTVAL,'toriqil hasan','ctg','toriqil@hotmail.com');
+insert into b_head_c values (bhc_id_S1.NEXTVAL,'foisal ahmed','khulna','ahmed34@hotmail.com');
+insert into b_head_c values (bhc_id_S1.NEXTVAL,'md roy','sylhet','mdrony33@hotmail.com');
+
+   
+   
+ Select*
+ from b_head_c;
+ 
+ describe b_head_c;
+ drop table b_head_c;
+
+CREATE SEQUENCE bhc_id_S1
+INCREMENT BY 1
+START WITH 1
+MAXVALUE 1000
+NOCACHE
+NOCYCLE;
+
+Drop SEQUENCE bhc_id_S1;
+
+------------------------------------brancg head contact number------------------
+
+create table cbhcnumber( 
+   cbhcn_id number not null,
+   cbhcnone number not null,
+   cbhcntwo number ,
+   cbhcthree number,
+   
+   h_id number not null,
+    
+   constraint cpnsn primary key(cbhcn_id),
+   constraint bht_fk1 foreign key(h_id) references  b_head_c (h_id)
+   
+   );
+   
+insert into cbhcnumber values (cbhcn_id_S2.NEXTVAL,01797897601,null,null,1);
+insert into cbhcnumber values (cbhcn_id_S2.NEXTVAL,01797897601,01790987601,null,2);
+insert into cbhcnumber values (cbhcn_id_S2.NEXTVAL,01797897601,01797896578,null,3);
+insert into cbhcnumber values (cbhcn_id_S2.NEXTVAL,01797897601,null,null,4);
+insert into cbhcnumber values (cbhcn_id_S2.NEXTVAL,01797897601,01797892764,null,5);
+   
+ Select*
+ from cbhcnumber;
+ 
+ describe cbhcnumber;
+ drop table cbhcnumber;
+
+CREATE SEQUENCE cbhcn_id_S2
+INCREMENT BY 1
+START WITH 1
+MAXVALUE 1000
+NOCACHE
+NOCYCLE;
+
+Drop SEQUENCE cbhcn_id_S2;
+
+---------------------------------employee---------------------------------------
+
+create table emp( 
+   empid number not null,
+   ename varchar2(20) not null,
+   age number,
+   esal number not null,
+   empemail varchar2(20) not null,
+   hiredate date,
+   
+   h_id number not null,
+   
+   constraint empid primary key(empid),
+   constraint bht_fk2 foreign key(h_id) references  b_head_c (h_id)
+   
+   );
+   
+insert into emp values (e_id_S3.NEXTVAL,'Rafiq Uddin',23,3500,'rafiq126@gmail.com',(TO_DATE('2002-06-01','yyyy-mm-dd')),1);
+insert into emp values (e_id_S3.NEXTVAL,'Jamal Uddin',32,4100,'juddin17@hotmail.com',(TO_DATE('2000-03-01','yyyy-mm-dd')),1);
+insert into emp values (e_id_S3.NEXTVAL,'rafi rony',41,2100,'rafi@yahoo.com',(TO_DATE('2004-04-01','yyyy-mm-dd')),3);
+insert into emp values (e_id_S3.NEXTVAL,'md johirul',26,2500,'johirul@gmail.com',(TO_DATE('2002-02-01','yyyy-mm-dd')),2);
+insert into emp values (e_id_S3.NEXTVAL,'farhan akhtar',35,2000,'farhan@hotmail.com',(TO_DATE('2002-06-01','yyyy-mm-dd')),2);
+   
+ Select*
+ from emp;
+ 
+ describe emp;
+ drop table emp;
+
+CREATE SEQUENCE e_id_S3
+INCREMENT BY 1
+START WITH 1
+MAXVALUE 1000
+NOCACHE
+NOCYCLE;
+
+Drop SEQUENCE e_id_S3;
+
+
+--------------------------------emp spec---------------------------------------
+
+create table especiality( 
+   es_no number not null,
+   es_type varchar2(20) not null,
+   
+   empid number not null,
+    
+   constraint esno primary key(es_no),
+   constraint empid_fk3 foreign key(empid) references emp (empid)
+   
+   );
+   
+ insert into especiality values (es_id_S4.NEXTVAL,'Software developmer',1);
+ insert into especiality values (es_id_S4.NEXTVAL,'hardware developmer',2);
+ insert into especiality values (es_id_S4.NEXTVAL,'web developmer',3);
+ insert into especiality values (es_id_S4.NEXTVAL,'web developmer',4);
+ insert into especiality values (es_id_S4.NEXTVAL,'software developmer',5);
+   
+ Select*
+ from especiality;
+ 
+ describe especiality;
+ drop table especiality;
+
+CREATE SEQUENCE es_id_S4
+INCREMENT BY 1
+START WITH 1
+MAXVALUE 1000
+NOCACHE
+NOCYCLE;
+
+Drop SEQUENCE es_id_S4;
+
+------------------------------e phone-------------------------------------------
+
+create table ephone( 
+   epnsn number not null,
+   epnone number not null,
+   epntwo number ,
+   epnthree number,
+   
+   empid number not null,
+    
+   constraint epnsnn primary key(epnsn),
+   constraint empid_fk4 foreign key(empid) references emp (empid)
+   
+   );
+   
+ insert into ephone values (ep_id_S5.NEXTVAL,01797897601,null,null,1);
+ insert into ephone values (ep_id_S5.NEXTVAL,01789759858,null,null,2);
+ insert into ephone values (ep_id_S5.NEXTVAL,01797894567,01797654456,null,3);
+ insert into ephone values (ep_id_S5.NEXTVAL,01797869706,01797878567,null,4);
+ insert into ephone values (ep_id_S5.NEXTVAL,01797689581,null,null,5);
+ 
+   
+ Select*
+ from ephone;
+ 
+ describe phone;
+ drop table ephone;
+
+CREATE SEQUENCE ep_id_S5
+INCREMENT BY 1
+START WITH 1
+MAXVALUE 1000
+NOCACHE
+NOCYCLE;
+
+Drop SEQUENCE ep_id_S5;
+
+
+---------------------------------------e adress---------------------------------
+
+create table eaddress( 
+   ea_id number not null,
+   e_location varchar2(30) not null, 
+   e_zip number not null,
+   
+   empid number not null,
+   
+   constraint ea_id primary key(ea_id),
+   constraint empid_fk5 foreign key(empid) references emp (empid)
+   
+   );
+   
+insert into eaddress values (sa_id_S8.NEXTVAL,'boshundhora',244,1);
+insert into eaddress values (sa_id_S8.NEXTVAL,'dhanmondi',264,2);
+insert into eaddress values (sa_id_S8.NEXTVAL,'baridhara',220,3);
+insert into eaddress values (sa_id_S8.NEXTVAL,'mirpur',404,4);
+insert into eaddress values (sa_id_S8.NEXTVAL,'azimput',334,5);
+
+   
+   
+ Select*
+ from eaddress;
+ 
+ describe eaddress;
+ drop table eaddress;
+
+CREATE SEQUENCE sa_id_S6
+INCREMENT BY 1
+START WITH 1
+MAXVALUE 1000
+NOCACHE
+NOCYCLE;
+
+Drop SEQUENCE sa_id_S6;
+
+-------------------------------manager------------------------------------------
+create table manager( 
+   m_id number not null,
+   m_name varchar2(30) not null, 
+   m_bname varchar2(20) not null,
+   m_email varchar2(20) unique,
+   m_sal number,
+   m_age number not null,
+   
+   constraint manid primary key(m_id)
+   
+   );
+   
+insert into manager values (m_id_S7.NEXTVAL,'md Asif','Dhaka','asif2@hotmail.com',6000,20);
+insert into manager values (m_id_S7.NEXTVAL,'md arafat','Khulna','arafat12@yahoo.com',7000,23);
+insert into manager values (m_id_S7.NEXTVAL,'md asif','rajshahi','md@hotmail.com',8000,22);
+insert into manager values (m_id_S7.NEXTVAL,'md jony','ctg','jony@hotmail.com',6500,24);
+insert into manager values (m_id_S7.NEXTVAL,'rifa khan','sylhet','khan@hotmail.com',8500,24);
+insert into manager values (m_id_S7.NEXTVAL,'anika tasnim','dinajpur','tasnim@hotmail.com',7000,25);
+
+   
+   
+ Select*
+ from manager;
+ 
+ describe manager;
+ drop table manager;
+
+CREATE SEQUENCE m_id_S7
+INCREMENT BY 1
+START WITH 1
+MAXVALUE 1000
+NOCACHE
+NOCYCLE;
+
+Drop SEQUENCE m_id_S7;
+
+------------------------------mancon--------------------------------------------
+create table mphone( 
+   mpnsn number not null,
+   mpnone number not null,
+   mpntwo number ,
+   mpnthree number,
+   
+   m_id number not null,
+    
+   constraint mpnsnn primary key(mpnsn),
+   constraint manager_fk8 foreign key(m_id) references manager (m_id)
+   
+   );
+   
+ insert into mphone values (mp_id_S8.NEXTVAL,01789867601,null,null,1);
+ insert into mphone values (mp_id_S8.NEXTVAL,01754879858,null,null,2);
+ insert into mphone values (mp_id_S8.NEXTVAL,09746894567,01797864456,null,3);
+ insert into mphone values (mp_id_S8.NEXTVAL,01797878906,01709878567,null,4);
+ insert into mphone values (mp_id_S8.NEXTVAL,01797635581,null,null,5);
+ 
+   
+ Select*
+ from ephone;
+ 
+ describe phone;
+ drop table ephone;
+
+CREATE SEQUENCE mp_id_S8
+INCREMENT BY 1
+START WITH 1
+MAXVALUE 1000
+NOCACHE
+NOCYCLE;
+
+Drop SEQUENCE mp_id_S8;
+
+---------------------------------manager address--------------------------------
+
+create table madress( 
+   m_address_id number not null,
+   m_city varchar2(30) not null,  
+   m_sector varchar2(20) not null,
+   m_house number,
+   
+   m_id number not null,
+   
+   constraint m_adress primary key(m_address_id),
+   constraint manager_fk9 foreign key(m_id) references manager (m_id)
+   
+   );
+   
+insert into madress values (ma_id_S11.NEXTVAL,'dhaka','NO',12,1);
+insert into madress values (ma_id_S11.NEXTVAL,'rajshahi','10',61,2);
+insert into madress values (ma_id_S11.NEXTVAL,'ctg','5',67,3);
+insert into madress values (ma_id_S11.NEXTVAL,'khulna','NO',98,4);
+insert into madress values (ma_id_S11.NEXTVAL,'sylhet','15',32,5);
+
+   
+   
+ Select*
+ from madress;
+ 
+ describe madress;
+ drop table madress;
+
+CREATE SEQUENCE ma_id_S11
+INCREMENT BY 1
+START WITH 1
+MAXVALUE 1000
+NOCACHE
+NOCYCLE;
+
+Drop SEQUENCE ma_id_S11;
+
+
+-------------------------------serial details-----------------------------------
+
+create table serial( 
+   s_no number not null,
+   contact_date date,
+   
+   m_id number not null,
+   
+   constraint sno primary key( s_no),
+   constraint manager_fk6 foreign key(m_id) references manager (m_id)
+   
+   );
+   
+insert into serial values (s_id_S8.NEXTVAL,(TO_DATE('2023-10-21','yyyy-mm-dd')),1);
+insert into serial values (s_id_S8.NEXTVAL,(TO_DATE('2023-11-11','yyyy-mm-dd')),2);
+insert into serial values (s_id_S8.NEXTVAL,(TO_DATE('2024-09-08','yyyy-mm-dd')),4);
+insert into serial values (s_id_S8.NEXTVAL,(TO_DATE('2022-06-07','yyyy-mm-dd')),5);
+insert into serial values (s_id_S8.NEXTVAL,(TO_DATE('2022-04-13','yyyy-mm-dd')),4);
+   
+ Select*
+ from serial;
+ 
+ describe serail;
+ drop table serial;
+
+CREATE SEQUENCE s_id_S8
+INCREMENT BY 1
+START WITH 1
+MAXVALUE 1000
+NOCACHE
+NOCYCLE;
+
+Drop SEQUENCE s_id_S8;
+
+------------------------------servises table------------------------------------
+
+
+create table services( 
+   servicesno number not null,
+   servicestype varchar2(10) not null,
+   service_duraton varchar2(10),
+   
+   s_no number not null,
+   
+   constraint serno primary key(servicesno),
+   constraint serial_fk7 foreign key(s_no) references serial (s_no)
+   
+   );
+   
+insert into services values (s_id_S7.NEXTVAL,'general','4h',1);
+insert into services values (s_id_S7.NEXTVAL,'general','12h',2);
+insert into services values (s_id_S7.NEXTVAL,'emergency','12h',3);
+insert into services values (s_id_S7.NEXTVAL,'emergency','20h',4);
+insert into services values (s_id_S7.NEXTVAL,'general','2m',5);
+   
+ Select*
+ from services;
+ 
+ describe services;
+ drop table services;
+
+CREATE SEQUENCE s_id_S7
+INCREMENT BY 1
+START WITH 1
+MAXVALUE 1000
+NOCACHE
+NOCYCLE;
+
+Drop SEQUENCE s_id_S7;
+
+---------------------------------scno-------------------------------------------
+create table scontact( 
+   sc_no number not null,
+   scontactone number not null,
+   scontacttwo number ,
+   scontactthree number,
+   
+   s_no number not null,
+    
+   constraint scno primary key(sc_no),
+   constraint serial_fk8 foreign key( s_no) references serial( s_no)
+   
+   );
+   
+ insert into scontact values (scp_id_S9.NEXTVAL,01775867601,null,null,1);
+ insert into scontact values (scp_id_S9.NEXTVAL,01754987858,null,null,2);
+ insert into scontact values (scp_id_S9.NEXTVAL,09789894567,017975784456,null,3);
+ insert into scontact values (scp_id_S9.NEXTVAL,01797897906,017890878567,null,4);
+ insert into scontact values (scp_id_S9.NEXTVAL,01797897581,null,null,5);
+ 
+   
+ Select*
+ from scontact;
+ 
+ describe scontact;
+ drop table scontact;
+
+CREATE SEQUENCE scp_id_S9
+INCREMENT BY 1
+START WITH 1
+MAXVALUE 1000
+NOCACHE
+NOCYCLE;
+
+Drop SEQUENCE scp_S9;
+
+-------------------------------helpline-----------------------------------------
+
+create table helpl( 
+   Rec_id number not null,
+   Rec_name varchar2(20) not null,
+   serialdate date not null, 
+   
+   s_no number not null,
+   
+   constraint  Recid primary key( Rec_id),
+   constraint serial_fk12 foreign key(s_no) references serial (s_no)
+   
+   );
+   
+insert into helpl values (sno_id_S12.NEXTVAL,'Robin Hossian',(TO_DATE('2022-06-01','yyyy-mm-dd')),1);
+insert into helpl values (sno_id_S12.NEXTVAL,'fahad Khan',(TO_DATE('2023-05-01','yyyy-mm-dd')),2);
+insert into helpl values (sno_id_S12.NEXTVAL,'afsana Mim',(TO_DATE('2024-02-01','yyyy-mm-dd')),3);
+insert into helpl values (sno_id_S12.NEXTVAL,'Md Foisal Ahmed',(TO_DATE('2024-05-01','yyyy-mm-dd')),4);
+insert into helpl values (sno_id_S12.NEXTVAL,'Junayed rony',(TO_DATE('2022-05-01','yyyy-mm-dd')),5);
+   
+ Select*
+ from helpl;
+ 
+ describe helpl;
+ drop table helpl;
+
+CREATE SEQUENCE sno_id_S12
+INCREMENT BY 1
+START WITH 1
+MAXVALUE 1000
+NOCACHE
+NOCYCLE;
+
+Drop SEQUENCE sno_id_S12;
+
+------------------------------hcontact------------------------------------------
+
+create table hcontact( 
+   hpnsn number not null,
+   hpnone number not null,
+   hpntwo number ,
+   hpnthree number,
+   
+   Rec_id number not null,
+    
+   constraint hpnsno primary key(hpnsn),
+   constraint help_fk13 foreign key(Rec_id) references helpl (Rec_id)
+   
+   );
+   
+ insert into hcontact values (hp_id_S14.NEXTVAL,01789677601,null,null,1);
+ insert into hcontact values (hp_id_S14.NEXTVAL,01750979858,null,null,2);
+ insert into hcontact values (hp_id_S14.NEXTVAL,09709894567,01797869856,null,3);
+ insert into hcontact values (hp_id_S14.NEXTVAL,01709878906,01709898567,null,4);
+ insert into hcontact values (hp_id_S14.NEXTVAL,01787636581,null,null,5);
+ 
+   
+ Select*
+ from  hcontact;
+ 
+ describe hcontact;
+ drop table hcontact;
+
+CREATE SEQUENCE hp_id_S14
+INCREMENT BY 1
+START WITH 1
+MAXVALUE 1000
+NOCACHE
+NOCYCLE;
+
+Drop SEQUENCE hp_id_S14;
+
+----------------------------------customer table--------------------------------
+
+create table customer( 
+   c_id number not null,
+   c_name varchar2(30) not null, 
+   c_email varchar2(20) unique,
+   c_gender varchar2(20) not null,
+   c_age number not null,
+   
+   Rec_id number not null,
+
+   
+   constraint cido primary key(c_id),
+   constraint help_fk15 foreign key(Rec_id) references helpl (Rec_id)
+   
+   );
+   
+insert into customer values (c_id_S15.NEXTVAL,'md Asif','asif2@hotmail.com','male',20,1);
+insert into customer values (c_id_S15.NEXTVAL,'md arafat','arafat12@yahoo.com','male',23,2);
+insert into customer values (c_id_S15.NEXTVAL,'md asif','md@hotmail.com','male',22,3);
+insert into customer values (c_id_S15.NEXTVAL,'md jony','jony@hotmail.com','male',24,4);
+insert into customer values (c_id_S15.NEXTVAL,'rifa khan','khan@hotmail.com','male',24,5);
+insert into customer values (c_id_S15.NEXTVAL,'anika tasnim','tasnim@hotmail.com','male',25,5);
+
+   
+   
+ Select*
+ from customer;
+ 
+ describe customer;
+ drop table customer;
+
+CREATE SEQUENCE c_id_S15
+INCREMENT BY 1
+START WITH 1
+MAXVALUE 1000
+NOCACHE
+NOCYCLE;
+
+Drop SEQUENCE c_id_S15;
+
+--------------------------------cproblem----------------------------------------
+
+
+create table problems( 
+   problemno number not null,
+   problemtype varchar2(10) not null,
+   
+    Rec_id number not null,
+   
+   constraint problemno primary key(problemno),
+   constraint help_fk20 foreign key(Rec_id) references helpl (Rec_id)
+   
+   );
+   
+insert into problems values (p_id_S6.NEXTVAL,'General',1);
+insert into problems values (p_id_S6.NEXTVAL,'General',2);
+insert into problems values (p_id_S6.NEXTVAL,'General',3);
+insert into problems values (p_id_S6.NEXTVAL,'General',4);
+insert into problems values (p_id_S6.NEXTVAL,'General',5);
+   
+ Select*
+ from problems;
+ 
+ describe problems;
+ drop table problems;
+
+CREATE SEQUENCE p_id_S20
+INCREMENT BY 1
+START WITH 1
+MAXVALUE 1000
+NOCACHE
+NOCYCLE;
+
+Drop SEQUENCE p_id_S20;
+
+
+
+
+--------------------------------customer adress---------------------------------
+
+create table caddress( 
+   ca_id number not null,
+   c_city varchar2(30) not null, 
+   c_sector number, 
+   c_house number,
+   c_street number,
+   
+   c_id number not null,
+   
+   constraint caid primary key(ca_id),
+   constraint customer_fk17 foreign key(c_id) references customer (c_id)
+   
+   );
+   
+insert into caddress values (ca_id_S18.NEXTVAL,'boshundhora',2,5,7,1);
+insert into caddress values (ca_id_S18.NEXTVAL,'boshundhora',5,8,7,2);
+insert into caddress values (ca_id_S18.NEXTVAL,'boshundhora',4,9,10,3);
+insert into caddress values (ca_id_S18.NEXTVAL,'boshundhora',9,8,12,4);
+insert into caddress values (ca_id_S18.NEXTVAL,'boshundhora',6,4,14,5);
+
+   
+   
+ Select*
+ from caddress;
+ 
+ describe caddress;
+ drop table caddress;
+
+CREATE SEQUENCE ca_id_S18
+INCREMENT BY 1
+START WITH 1
+MAXVALUE 1000
+NOCACHE
+NOCYCLE;
+
+Drop SEQUENCE ca_id_S18;
+
+--------------------------------c phone number----------------------------------
+
+create table cphonenumber( 
+   cpnsn number not null,
+   cpnone number not null,
+   cpntwo number ,
+   cpnthree number,
+   
+   c_id number not null,
+    
+   constraint cpnsno primary key(cpnsn),
+   constraint customer_fk18 foreign key(c_id) references customer (c_id)
+   
+   );
+   
+insert into cphonenumber values (cpnsn_id_S19.NEXTVAL,01797897601,null,null,1);
+insert into cphonenumber values (cpnsn_id_S19.NEXTVAL,01795697601,null,null,2);
+insert into cphonenumber values (cpnsn_id_S19.NEXTVAL,01797898701,null,null,3);
+insert into cphonenumber values (cpnsn_id_S19.NEXTVAL,01796797601,null,null,4);
+insert into cphonenumber values (cpnsn_id_S19.NEXTVAL,01799845601,null,null,5);
+   
+ Select*
+ from cphonenumber;
+ 
+ describe cphonenumber;
+ drop table cphonenumber;
+
+CREATE SEQUENCE cpnsn_id_S19
+INCREMENT BY 1
+START WITH 1
+MAXVALUE 1000
+NOCACHE
+NOCYCLE;
+
+Drop SEQUENCE cpnsn_id_S19;
+
+
+
+--------------------------------token-------------------------------------------
+
+
+create table tken( 
+   tkenno number not null,
+   tkenprice number not null,
+   tkenstatus varchar2(10) not null,
+   tservises varchar2(20),
+   tdate date not null,
+   
+   empid number not null,
+   c_id number not null,
+  
+    
+   constraint tkno primary key(tkenno),
+   constraint empid_fk6 foreign key(empid) references emp (empid),
+   constraint customer_fk16 foreign key(c_id) references customer (c_id)
+   
+   );
+   
+insert into tken values (t_id_S9.NEXTVAL,200,'regular','soft problem',(TO_DATE('2023-06-01','yyyy-mm-dd')),1,1);
+insert into tken values (t_id_S9.NEXTVAL,200,'regular','hard ware problem',(TO_DATE('2023-06-01','yyyy-mm-dd')),2,2);
+insert into tken values (t_id_S9.NEXTVAL,200,'regular','web develop',(TO_DATE('2023-06-01','yyyy-mm-dd')),3,3);
+insert into tken values (t_id_S9.NEXTVAL,200,'regular','web development',(TO_DATE('2023-06-01','yyyy-mm-dd')),4,4);
+insert into tken values (t_id_S9.NEXTVAL,200,'regular','software development',(TO_DATE('2023-06-01','yyyy-mm-dd')),5,5);
+   
+ Select*
+ from tken;
+ 
+ describe tken;
+ drop table tken;
+
+CREATE SEQUENCE t_id_S9
+INCREMENT BY 1
+START WITH 1
+MAXVALUE 1000
+NOCACHE
+NOCYCLE;
+
+Drop SEQUENCE t_id_S9;

@@ -1,0 +1,83 @@
+1. Display employe 5 salaray 
+
+select ename, esal
+from employee
+where empno=5 ;
+Group function
+
+
+2. Find the average salary of employees in each emp
+
+SELECT empno, AVG(esal) AS "Avarage_Salary_of_Employee"
+FROM employee
+GROUP BY empno;
+
+
+3. Determine the maximum salary of each employee
+
+SELECT empno, MAX(esal) AS "maximum_salary"
+FROM employee
+GROUP BY empno;
+
+
+4. Get all email addresses of customer has ending with '@hotmail.com'. 
+
+SELECT C_name, C_email
+FROM customer
+WHERE c_email LIKE '%@hotmail.com';
+
+
+5. Get the names of all employees who have a higher salary than their manager.
+
+SELECT e1.ename AS Employee_Name, e1.esal AS Employee_Salary, e2.ename AS Manager_Name, e2.esal AS Manager_Salary
+FROM employee e1
+JOIN employee e2 ON e1.manager_id = e2.empno
+WHERE e1.esal > e2.esal;
+
+
+6. Retrieve SERVICES the name along with their corresponding address
+
+SELECT SERVICES.SERVICESTYPE, SADDRESS.S_LOCATION, SADDRESS.S_ZIP	
+from SERVICES, SADDRESS
+JOIN SADDRESS ON SERVICES.SERVICESNO = SADDRESS.SA_IDD;
+
+
+7. Create a view named customer_vw based on customer table which shows the customer id customer namem, e email. Display the customer id and email.
+
+CREATE VIEW customer_vw AS
+SELECT c_id, c_name, c_email
+FROM customer;
+
+SELECT c_id, c_email
+FROM customer_vw;
+
+
+
+8. Create a view named emp_vw based on employee table which shows empno, ename, salary. Display empno, ename, salary.
+
+CREATE VIEW emp_vw AS
+SELECT empno, ename, esal
+FROM employee;
+
+SELECT empno, ename, esal
+FROM emp_vw;
+
+
+
+9. Create a view named speciality_vw based on trainer table which shows the speciality. Display the view.
+CREATE VIEW speciality_vw AS
+SELECT S_NO, S_TYPE, EMPNO
+FROM speciality;
+
+SELECT*
+FROM speciality_vw;
+
+
+10. Write an SQL query to retrieve the employee names along with their respective speciality from the employee and speciality tables. 
+The result should include the employee name (ename) and the speciality type (s_type).
+
+SELECT e.ename, s.s_type
+FROM employee e
+JOIN speciality s ON e.empno = s.empno;
+
+

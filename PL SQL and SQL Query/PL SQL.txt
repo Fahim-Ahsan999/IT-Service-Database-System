@@ -1,0 +1,139 @@
+1. Write a PL/SQL block to display the total number of employees in the `employee` table.
+
+   DECLARE
+      total_employees NUMBER;
+   BEGIN
+      SELECT COUNT(*) INTO total_employees FROM employee;
+      DBMS_OUTPUT.PUT_LINE('Total Number of Employees: ' || total_employees);
+   END;
+   /
+
+
+2. Write a PL/SQL block to update the salary of employees whose current salary is below 3000 by adding a 10% increment.
+
+   BEGIN
+      UPDATE employee
+      SET esal = esal * 1.10
+      WHERE esal < 3000;
+      DBMS_OUTPUT.PUT_LINE('Salaries updated successfully.');
+   END;
+   /
+
+
+3. Create a stored procedure to add a new customer to the `customer` table.
+
+   CREATE OR REPLACE PROCEDURE add_customer (
+      p_c_id NUMBER,
+      p_c_name VARCHAR2,
+      p_c_status VARCHAR2,
+      p_c_email VARCHAR2,
+      p_c_gender VARCHAR2,
+      p_c_age NUMBER,
+      p_eserialno NUMBER
+   ) IS
+   BEGIN
+      INSERT INTO customer (c_id, c_name, c_staus, c_email, c_gender, c_age, eserialno)
+      VALUES (p_c_id, p_c_name, p_c_status, p_c_email, p_c_gender, p_c_age, p_eserialno);
+      DBMS_OUTPUT.PUT_LINE('Customer added successfully.');
+   END;
+   /
+
+
+4. Write a PL/SQL block to retrieve and display the details of all services with a charge greater than 200
+
+   DECLARE
+      CURSOR service_cursor IS
+         SELECT servicestype, servicescharge FROM services WHERE servicescharge > 200;
+      v_servicestype services.servicestype%TYPE;
+      v_servicescharge services.servicescharge%TYPE;
+   BEGIN
+      OPEN service_cursor;
+      LOOP
+         FETCH service_cursor INTO v_servicestype, v_servicescharge;
+         EXIT WHEN service_cursor%NOTFOUND;
+         DBMS_OUTPUT.PUT_LINE('Service Type: ' || v_servicestype || ', Charge: ' || v_servicescharge);
+      END LOOP;
+      CLOSE service_cursor;
+   END;
+   /
+
+
+5. Create a PL/SQL function to return the total number of customers in a specific location.
+
+   CREATE OR REPLACE FUNCTION get_customer_count(p_location VARCHAR2) RETURN NUMBER IS
+      v_count NUMBER;
+   BEGIN
+      SELECT COUNT(*) INTO v_count
+      FROM caddress
+      WHERE c_location = p_location;
+      RETURN v_count;
+   END;
+   /
+
+
+6. Write a PL/SQL block to delete all tokens older than a specific date.
+
+   DECLARE
+      v_date DATE := TO_DATE('2023-01-01', 'YYYY-MM-DD');
+   BEGIN
+      DELETE FROM token WHERE tdate < v_date;
+      DBMS_OUTPUT.PUT_LINE('Old tokens deleted successfully.');
+   END;
+   /
+
+
+7. Create a PL/SQL trigger that automatically updates the `last_updated` field in the `employee` table whenever an employee’s salary is updated.
+
+   CREATE OR REPLACE TRIGGER update_last_modified
+   BEFORE UPDATE OF esal ON employee
+   FOR EACH ROW
+   BEGIN
+      :NEW.hiredate := SYSDATE;
+   END;
+   /
+
+
+8. Write a PL/SQL block to find and display the employee(s) with the highest salary.
+
+   DECLARE
+      v_max_salary employee.esal%TYPE;
+   BEGIN
+      SELECT MAX(esal) INTO v_max_salary FROM employee;
+      FOR emp_rec IN (SELECT ename, esal FROM employee WHERE esal = v_max_salary) LOOP
+         DBMS_OUTPUT.PUT_LINE('Employee Name: ' || emp_rec.ename || ', Salary: ' || emp_rec.esal);
+      END LOOP;
+   END;
+   /
+
+
+9. Create a procedure to retrieve all customers who have an email ending with '@hotmail.com'.
+
+   CREATE OR REPLACE PROCEDURE get_hotmail_customers IS
+   BEGIN
+      FOR cust IN (SELECT c_name, c_email FROM customer WHERE c_email LIKE '%@hotmail.com') LOOP
+         DBMS_OUTPUT.PUT_LINE('Customer Name: ' || cust.c_name || ', Email: ' || cust.c_email);
+      END LOOP;
+   END;
+   /
+
+
+10. Write a PL/SQL block to calculate the average salary of employees grouped by their specialties.
+
+    DECLARE
+       CURSOR avg_salary_cursor IS
+          SELECT s_type, AVG(e.esal) AS avg_salary
+          FROM employee e
+          JOIN speciality s ON e.empno = s.empno
+          GROUP BY s_type;
+       v_s_type speciality.s_type%TYPE;
+       v_avg_salary NUMBER;
+    BEGIN
+       OPEN avg_salary_cursor;
+       LOOP
+          FETCH avg_salary_cursor INTO v_s_type, v_avg_salary;
+          EXIT WHEN avg_salary_cursor%NOTFOUND;
+          DBMS_OUTPUT.PUT_LINE('Specialty: ' || v_s_type || ', Average Salary: ' || v_avg_salary);
+       END LOOP;
+       CLOSE avg_salary_cursor;
+    END;
+    /
